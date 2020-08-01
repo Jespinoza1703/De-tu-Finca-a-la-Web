@@ -8,6 +8,7 @@ import Select from 'react-select';
 import {MapComponent} from '../components/Map'
 import AuthService from "../services/auth.service";
 import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const options = [
   { value: 'regularConsumer', label: 'Cliente Regular' },
@@ -71,6 +72,7 @@ export default class Register extends Component {
       lastName: "",
       email: "",
       password: "",
+      phone: "",
       role: "",
       successful: false,
       message: ""
@@ -101,8 +103,16 @@ export default class Register extends Component {
     });
   }
 
+  onChangePhone(e) {
+    this.setState({
+      phone: e.target.value
+    });
+  }
+
   onChangeRole = (selectedOption) => {
-    this.setState({ role: selectedOption.value });
+    this.setState({
+      role: selectedOption.target.value
+    });
   };
 
 
@@ -164,61 +174,80 @@ export default class Register extends Component {
                     <div>
                       <div className="form-group">
                           <TextField type="text"
-                                     id="outlined-basic"
+                                     required
+                                     id="name"
                                      label="Nombre"
                                      size="small"
                                      className="form-control"
-                                     validations={[required, vname]}
+                                     onChange={this.onChangeName}
+                                     variant="outlined"
                                      value={this.state.name}/>
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="lastName">Apellido</label>
-                        <Input
-                            type="text"
-                            className="form-control"
-                            name="lastName"
-                            value={this.state.lastName}
-                            onChange={this.onChangeLastName}
-                            validations={[required, vname]}
-                            placeholder="Apellido"
-                        />
+                        <TextField type="text"
+                                   required
+                                   id="lastName"
+                                   label="Apellido"
+                                   size="small"
+                                   className="form-control"
+                                   onChange={this.onChangeLastName}
+                                   variant="outlined"
+                                   value={this.state.lastName}/>
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="email">Correo</label>
-                        <Input
-                          type="text"
-                          className="form-control"
-                          name="email"
-                          value={this.state.email}
-                          onChange={this.onChangeEmail}
-                          validations={[required, email]}
-                          placeholder="ejemplo@gmail.com"
-                        />
+                        <TextField type="email"
+                                   required
+                                   id="email"
+                                   label="Email"
+                                   size="small"
+                                   className="form-control"
+                                   onChange={this.onChangeEmail}
+                                   variant="outlined"
+                                   value={this.state.email}/>
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="password">Contraseña</label>
-                        <Input
-                          type="password"
-                          className="form-control"
-                          name="password"
-                          value={this.state.password}
-                          onChange={this.onChangePassword}
-                          validations={[required, vpassword]}
-                          placeholder="123456"
-                        />
+                        <TextField type="password"
+                                   required
+                                   id="password"
+                                   label="Contraseña"
+                                   size="small"
+                                   className="form-control"
+                                   onChange={this.onChangePassword}
+                                   variant="outlined"
+                                   value={this.state.password}/>
                       </div>
-
                       <div className="form-group">
-                        <label htmlFor="password">Rol</label>
-                        <Select
+                        <TextField type="text"
+                                   required
+                                   id="phone"
+                                   label="Teléfono"
+                                   size="small"
+                                   className="form-control"
+                                   onChange={this.onChangePhone}
+                                   variant="outlined"
+                                   value={this.state.phone}/>
+                      </div>
+                      <div className="form-group">
+                        <TextField
+                            id="role"
+                            required
+                            select
+                            label="Seleccione su rol"
+                            value={this.state.role}
                             onChange={this.onChangeRole}
-                            options={options}
-                            placeholder="Seleccione su rol"
-                            validations={[required]}
-                        />
+                            variant="outlined"
+                            size="small"
+                            helperText="Por favor seleccione su rol para registrarse"
+                        >
+                          {options.map((option) => (
+                              <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                              </MenuItem>
+                          ))}
+                        </TextField>
                       </div>
 
                       <div className="form-group">

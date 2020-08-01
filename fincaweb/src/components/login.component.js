@@ -84,8 +84,8 @@ export default class Login extends Component {
   render() {
     return (
         <div className="jumbotron-fluid">
-          <div className="card card-container flexbox-container">
-            <div>
+          <div className="card-container flexbox-container">
+            <div className="card">
 
               <h1>Registrarse</h1>
             <Form
@@ -93,31 +93,28 @@ export default class Login extends Component {
               ref={c => {
                 this.form = c;
               }}
-            >
-              <div className="form-group">
-                <label htmlFor="email">Correo Electrónico</label>
-                <Input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.onChangeEmail}
-                  validations={[required]}
-                  placeholder="ejemplo@gmail.com"
-                />
-              </div>
+            ><div className="form-group">
+              <TextField type="email"
+                         required
+                         id="email"
+                         label="Email"
+                         size="small"
+                         className="form-control"
+                         onChange={this.onChangeEmail}
+                         variant="outlined"
+                         value={this.state.email}/>
+            </div>
 
               <div className="form-group">
-                <label htmlFor="password">Contraseña</label>
-                <Input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.onChangePassword}
-                  validations={[required]}
-                  placeholder="123456"
-                />
+                <TextField type="password"
+                           required
+                           id="password"
+                           label="Contraseña"
+                           size="small"
+                           className="form-control"
+                           onChange={this.onChangePassword}
+                           variant="outlined"
+                           value={this.state.password}/>
               </div>
 
               <div className="form-group">
@@ -132,13 +129,6 @@ export default class Login extends Component {
                 </button>
               </div>
 
-              {this.state.message && (
-                <div className="form-group">
-                  <div className="alert alert-danger" role="alert">
-                    {this.state.message}
-                  </div>
-                </div>
-              )}
               <CheckButton
                 style={{ display: "none" }}
                 ref={c => {
@@ -147,7 +137,7 @@ export default class Login extends Component {
               />
             </Form>
           </div>
-          <div>
+            <div className="card">
             <MapComponent />
           </div>
         </div>
