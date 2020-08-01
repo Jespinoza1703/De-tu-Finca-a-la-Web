@@ -8,12 +8,12 @@ import AuthService from "./services/auth.service";
 import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
-import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardModerator from "./components/board-moderator.component";
-import BoardAdmin from "./components/board-admin.component";
+
+
 
 class App extends Component {
+
+
   constructor(props) {
     super(props);
     this.logOut = this.logOut.bind(this);
@@ -23,6 +23,7 @@ class App extends Component {
       showAdminBoard: false,
       currentUser: undefined
     };
+
   }
 
   componentDidMount() {
@@ -40,6 +41,8 @@ class App extends Component {
   logOut() {
     AuthService.logout();
   }
+
+
 
   render() {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
@@ -122,8 +125,11 @@ class App extends Component {
             </div>
           </div>
         </Router>
+
     );
   }
 }
+
+
 
 export default App;

@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import TextField from '@material-ui/core/TextField';
 
 import AuthService from "../services/auth.service";
+import {MapComponent} from "./Map";
 
 const required = value => {
   if (!value) {
@@ -81,9 +83,11 @@ export default class Login extends Component {
 
   render() {
     return (
-        <div className="card card-container bg-image">
-          <div className="jumbotron">
-            <h1>Ingresar</h1>
+        <div className="jumbotron-fluid">
+          <div className="card card-container flexbox-container">
+            <div>
+
+              <h1>Registrarse</h1>
             <Form
               onSubmit={this.handleLogin}
               ref={c => {
@@ -99,6 +103,7 @@ export default class Login extends Component {
                   value={this.state.email}
                   onChange={this.onChangeEmail}
                   validations={[required]}
+                  placeholder="ejemplo@gmail.com"
                 />
               </div>
 
@@ -111,6 +116,7 @@ export default class Login extends Component {
                   value={this.state.password}
                   onChange={this.onChangePassword}
                   validations={[required]}
+                  placeholder="123456"
                 />
               </div>
 
@@ -141,6 +147,10 @@ export default class Login extends Component {
               />
             </Form>
           </div>
+          <div>
+            <MapComponent />
+          </div>
+        </div>
         </div>
     );
   }

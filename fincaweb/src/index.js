@@ -7,7 +7,9 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
     <BrowserRouter>
-        <App />
+        <div className="mainContainer bg-image">
+            <App />
+        </div>
     </BrowserRouter>,
     document.getElementById("root")
 );

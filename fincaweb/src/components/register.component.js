@@ -5,7 +5,9 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import Select from 'react-select';
 
+import {MapComponent} from '../components/Map'
 import AuthService from "../services/auth.service";
+import TextField from "@material-ui/core/TextField";
 
 const options = [
   { value: 'regularConsumer', label: 'Cliente Regular' },
@@ -101,7 +103,6 @@ export default class Register extends Component {
 
   onChangeRole = (selectedOption) => {
     this.setState({ role: selectedOption.value });
-    console.log(`Option selected:`, selectedOption.value);
   };
 
 
@@ -148,104 +149,112 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div className="card card-container bg-image">
-        <div className="jumbotron">
+        <div className="jumbotron-fluid">
+            <div className="card-container flexbox-container">
+              <div className="card">
 
-          <h1>Registrarse</h1>
-          <Form
-            onSubmit={this.handleRegister}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            {!this.state.successful && (
-              <div>
-                <div className="form-group">
-                  <label htmlFor="name">Nombre</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.onChangeName}
-                    validations={[required, vname]}
+                <h1>Registrarse</h1>
+                <Form
+                  onSubmit={this.handleRegister}
+                  ref={c => {
+                    this.form = c;
+                  }}
+                >
+                  {!this.state.successful && (
+                    <div>
+                      <div className="form-group">
+                          <TextField type="text"
+                                     id="outlined-basic"
+                                     label="Nombre"
+                                     size="small"
+                                     className="form-control"
+                                     validations={[required, vname]}
+                                     value={this.state.name}/>
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="lastName">Apellido</label>
+                        <Input
+                            type="text"
+                            className="form-control"
+                            name="lastName"
+                            value={this.state.lastName}
+                            onChange={this.onChangeLastName}
+                            validations={[required, vname]}
+                            placeholder="Apellido"
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="email">Correo</label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          name="email"
+                          value={this.state.email}
+                          onChange={this.onChangeEmail}
+                          validations={[required, email]}
+                          placeholder="ejemplo@gmail.com"
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="password">Contraseña</label>
+                        <Input
+                          type="password"
+                          className="form-control"
+                          name="password"
+                          value={this.state.password}
+                          onChange={this.onChangePassword}
+                          validations={[required, vpassword]}
+                          placeholder="123456"
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="password">Rol</label>
+                        <Select
+                            onChange={this.onChangeRole}
+                            options={options}
+                            placeholder="Seleccione su rol"
+                            validations={[required]}
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <button className="btn btn-primary btn-block">Registrarse</button>
+                      </div>
+                    </div>
+                  )}
+
+                  <CheckButton
+                    style={{ display: "none" }}
+                    ref={c => {
+                      this.checkBtn = c;
+                    }}
                   />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="lastName">Apellido</label>
-                  <Input
-                      type="text"
-                      className="form-control"
-                      name="lastName"
-                      value={this.state.lastName}
-                      onChange={this.onChangeLastName}
-                      validations={[required, vname]}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="email">Correo</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    validations={[required, email]}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="password">Contraseña</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[required, vpassword]}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="password">Rol</label>
-                  <Select
-                      onChange={this.onChangeRole}
-                      options={options}
-                      placeholder="Seleccione su rol"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block">Registrarse</button>
-                </div>
+                </Form>
               </div>
-            )}
-
-            {this.state.message && (
-              <div className="form-group">
-                <div
+              <div className="card">
+                <MapComponent />
+              </div>
+            </div>
+          {this.state.message && (
+            <div>
+              <div
                   className={
                     this.state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
+                        ? "alert alert-success"
+                        : "alert alert-danger"
                   }
                   role="alert"
-                >
-                  {this.state.message}
-                </div>
+              >
+                {this.state.message}
               </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
+            </div>
+        )}
+
         </div>
-      </div>
     );
   }
 }
