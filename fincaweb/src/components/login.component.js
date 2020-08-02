@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Form from "react-validation/build/form";
 import TextField from '@material-ui/core/TextField';
+import MapTest from "./MapTest";
 
-import AuthService from "../services/auth.service";
-import {MapComponent} from "./Map";
 
 const Login = () => {
 
@@ -37,27 +36,30 @@ const Login = () => {
                 onSubmit={handleLogin}
             >
               <div className="form-group">
-              <TextField type="email"
-                     name="email"
-                     label="Email"
-                     size="small"
-                     className="form-control"
-                     variant="outlined"
-                     onChange={updateForm}
-                     value={email}
+              <TextField
+                  type="email"
+                  required
+                  name="email"
+                  label="Email"
+                  size="small"
+                  className="form-control"
+                  variant="outlined"
+                  onChange={updateForm}
+                  value={email}
               />
             </div>
 
               <div className="form-group">
-                <TextField type="password"
-                           required
-                           name="password"
-                           label="Contraseña"
-                           size="small"
-                           className="form-control"
-                           variant="outlined"
-                           onChange={updateForm}
-                           value={password}
+                <TextField
+                    type="password"
+                    required
+                    name="password"
+                    label="Contraseña"
+                    size="small"
+                    className="form-control"
+                    variant="outlined"
+                    onChange={updateForm}
+                    value={password}
                 />
               </div>
 
@@ -71,7 +73,7 @@ const Login = () => {
             </Form>
           </div>
           <div className="card">
-            <MapComponent />
+            <MapTest />
           </div>
         </div>
       </div>
