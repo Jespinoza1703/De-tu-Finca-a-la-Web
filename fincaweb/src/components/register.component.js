@@ -4,6 +4,7 @@ import "../index.css";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import MapComponent from "./Map";
+import RegionsService from "../services/regions.service";
 
 const options = [
   { value: 'regularConsumer', label: 'Cliente Regular' },
@@ -12,6 +13,23 @@ const options = [
   { value: 'transportation', label: 'Transporte' },
 ];
 
+
+let regionOptions = [];
+
+const getRegionsList=()=>{
+  RegionsService.getRegions().then(response =>{
+        let list = [];
+        for (let i = 0; i < response.data.length; i++ ){
+          let option = {
+            value: response.data[i].name,
+            label: response.data[i].name
+          };
+          list.push(option);
+        }
+        regionOptions = list;
+      }
+  );
+};
 
 const Register = () => {
 
@@ -27,17 +45,17 @@ const Register = () => {
     region: ""
   });
 
-  const {name, lastName, email, password, phone, role, lat, lng, region} = registerForm;
+  const {name, lastName, email, password, phone, role, x, y, region} = registerForm;
 
   const updateForm=(e)=>{
     setForm({
       ...registerForm,[e.target.name]:e.target.value
     })
+    getRegionsList();
   };
 
   const handleRegister =(e)=> {
     e.preventDefault();
-    console.log(registerForm);
     /*
     AuthService.register(
         name,
@@ -47,11 +65,16 @@ const Register = () => {
         phone,
         role,
         region,
-        [lat, lng]);
+        [y, x]);
 
      */
   };
 
+  const nameError = name.length < 3;
+  const lastNameError = lastName.length < 3;
+  const passwordError = password.length < 6;
+  const phoneError = !isNaN(Number(phone));
+  const emailError = !email.includes('@');
 
   return (
       <div className="jumbotron-fluid">
@@ -65,6 +88,8 @@ const Register = () => {
               <div>
                 <div className="form-group">
                   <TextField
+                      helperText={nameError ? "Debe tener al menos 3 caracteres" : ""}
+                      error={nameError}
                       type="text"
                       required
                       name="name"
@@ -78,6 +103,8 @@ const Register = () => {
 
                 <div className="form-group">
                   <TextField
+                      helperText={lastNameError ? "Debe tener al menos 3 caracteres" : ""}
+                      error={lastNameError}
                       type="text"
                       required
                       name="lastName"
@@ -91,6 +118,8 @@ const Register = () => {
 
                     <div className="form-group">
                       <TextField
+                          helperText={emailError ? "Debe contener @" : ""}
+                          error={emailError}
                           type="email"
                           required
                           name="email"
@@ -104,6 +133,8 @@ const Register = () => {
 
                     <div className="form-group">
                       <TextField
+                          helperText={passwordError ? "Debe tener al menos 6 caracteres" : ""}
+                          error={passwordError}
                           type="password"
                           required
                           name="password"
@@ -116,6 +147,8 @@ const Register = () => {
                     </div>
                     <div className="form-group">
                       <TextField
+                          helperText={phoneError ? "Debe ser un número" : ""}
+                          error={phoneError}
                           type="text"
                           required
                           name="phone"
@@ -136,7 +169,8 @@ const Register = () => {
                           onChange={updateForm}
                           variant="outlined"
                           size="small"
-                          helperText="Por favor seleccione su rol para registrarse"
+                          fullWidth={true}
+
                       >
                         {options.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
@@ -146,7 +180,27 @@ const Register = () => {
                       </TextField>
                     </div>
 
-                    <div className="form-group">
+                <div className="form-group">
+                  <TextField
+                      name="region"
+                      required
+                      select
+                      label="Seleccione su region"
+                      value={region}
+                      onChange={updateForm}
+                      variant="outlined"
+                      size="small"
+                      fullWidth={true}
+                  >
+                    {regionOptions.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                    ))}
+                  </TextField>
+                </div>
+
+                <div className="form-group">
                       <button className="btn btn-primary btn-block">Registrarse</button>
                     </div>
                   </div>

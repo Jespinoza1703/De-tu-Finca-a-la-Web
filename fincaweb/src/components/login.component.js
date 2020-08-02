@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-validation/build/form";
 import TextField from '@material-ui/core/TextField';
+import {Transformation} from "leaflet";
 
 
 const Login = () => {
@@ -30,7 +31,7 @@ const Login = () => {
         <div className="card-container flexbox-container">
           <div className="card">
 
-            <h1>Registrarse</h1>
+            <h1>Ingresar</h1>
             <Form
                 onSubmit={handleLogin}
             >
@@ -68,9 +69,14 @@ const Login = () => {
                 >Login
                 </button>
               </div>
-
             </Form>
           </div>
+          <div className="card-container responsive-image">
+            <img
+                src="https://wallpapersfind.com/wp-content/uploads/2017/10/fresh-vegetables-wallpaper-1080x1200.jpg"
+                alt="new" width="300" alt="Casual Jacket"
+                className="responsive-image__image" />
+            </div>
         </div>
       </div>
   );

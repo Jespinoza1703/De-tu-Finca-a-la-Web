@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: scroll;
   height: 100vh;
 }
 
@@ -13,6 +14,10 @@ code {
     monospace;
 }
 
+h1{
+  font-size: 2vw;
+  align-self: center;
+}
 
 .mainContainer{
   position: relative;
@@ -32,6 +37,20 @@ code {
   background-image: url("https://www.customwallpaper.net.au/wp-content/uploads/2016/06/Dark-wood-planks-600x396.jpeg");
 }
 
+.responsive-image {
+  position: relative;
+  max-width: 100%;
+}
+
+.responsive-image__image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 .navbar-custom{
   background: #15ff92;
@@ -50,48 +69,32 @@ label {
 }
 
 
-.map {
-  width: 100%;
-  height: 100%;
-  margin: 2% auto;
-}
-
-.leaflet-search-control-info {
-  max-height: 2vw;
-  overflow-y: scroll;
-}
-
-small a,
-small span {
-  font-size: 20rem;
-  text-decoration: none;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.leaflet-search-wrap {
-  z-index: 802;
-}
-
-.mapContainer{
+.login-jumbotron{
+  background-color: #f7f7f7;
   align-content: center;
-  width: 100%;
-  height: 30vw;
+  width: 50%;
+  height: 50vh;
 }
-
 
 .jumbotron-fluid{
   background-color: #f7f7f7;
   align-content: center;
   width: 100%;
-  height: 80vh;
+  height: 85vh;
+}
+
+.single-card-container {
+  align-content: center;
+  width: 50%;
+  height: 100%;
+  padding: 40px 40px;
 }
 
 .card-container {
   align-content: center;
   width: 100%;
   height: 100%;
-  padding: 40px 40px;
+  padding: 30px 20px;
 }
 
 .card {
@@ -101,7 +104,6 @@ small span {
   background-color: #f7f7f7;
   padding: 10px 10px 10px;
   margin: 0 auto 20px;
-  margin-top: 20px;
   margin-bottom: 20px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -109,6 +111,7 @@ small span {
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: scroll;
 }
 
 .flexbox-container {
@@ -116,6 +119,15 @@ small span {
   flex-direction: row;
 }
 
-.form-control{
+.form-group{
+  height: 50px;
+}
+
+.form-control {
   color: #15ff92;
+  font-size: 1.5rem;
+}
+
+TextField{
+  border-color: #15ff92;
 }

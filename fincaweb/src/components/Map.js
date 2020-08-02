@@ -70,12 +70,13 @@ const Search = (props) => {
 
 const styles = {
     wrapper: {
-        height: 400,
-        width: '80%',
+        height: '80vw',
+        width: '100%',
         margin: '0 auto',
         display: 'flex'
     },
     map: {
+        marginTop: 20,
         flex: 1
     }
 };
