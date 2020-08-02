@@ -24,7 +24,7 @@ const Login = () => {
   const handleLogin =(e)=> {
     e.preventDefault();
     console.log(loginForm);
-    // AuthService.login(email, password).then(r => )
+    // console.log(AuthService.login(email, password));
   };
 
   return (
