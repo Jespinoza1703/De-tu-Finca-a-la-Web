@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "https://kz-mock-productmanager.herokuapp.com/";
 
 class AuthService {
   login(email, password) {
     return axios
-      .post(API_URL + "signin", {
+      .post(API_URL + "users", {
         email,
         password
       })
@@ -22,13 +22,15 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  register(name, lastName, email, password, role) {
+  register(name, lastName, email, password, phone, role, ubicacion) {
     return axios.post(API_URL + "signup", {
       name,
       lastName,
       email,
       password,
-      role
+      phone,
+      role,
+      ubicacion
     });
   }
 

@@ -51,7 +51,7 @@ export class MapComponent extends React.Component {
                  */}
 
                 <h3 align="center">
-                   Ingrese su ubicación en la barra de búsqueda
+                    Ingrese su ubicación en la barra de búsqueda
                 </h3>
                 <MapContainer options={this.state}>
                     <TileLayer

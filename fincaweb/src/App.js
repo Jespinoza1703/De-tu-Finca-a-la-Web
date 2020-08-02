@@ -16,7 +16,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.logOut = this.logOut.bind(this);
+      this.logOut = this.logOut.bind(this);
 
     this.state = {
       showModeratorBoard: false,
@@ -118,13 +118,14 @@ class App extends Component {
 
             <div className="container mt-3">
               <Switch>
-                <Route exact path={["/", "/home"]} component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
+                <Route exact path={["/", "/home"]}> <Home /> </Route>
+                <Route exact path="/login"> <Login /> </Route>
+                <Route exact path="/register"> <Register /> </Route>
               </Switch>
             </div>
           </div>
         </Router>
+
 
     );
   }

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import Select from 'react-select';
 
 import {MapComponent} from '../components/Map'
 import AuthService from "../services/auth.service";
@@ -17,45 +15,6 @@ const options = [
   { value: 'transportation', label: 'Transporte' },
 ];
 
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        *Campo obligatorio
-      </div>
-    );
-  }
-};
-
-const email = value => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        Correo inválido.
-      </div>
-    );
-  }
-};
-
-const vname = value => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        El nombre debe tener entre 3 y 20 caracteres.
-      </div>
-    );
-  }
-};
-
-const vpassword = value => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        La contraseña debe tener entre 6 y 40 caracteres.
-      </div>
-    );
-  }
-};
 
 export default class Register extends Component {
   constructor(props) {
@@ -65,6 +24,7 @@ export default class Register extends Component {
     this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangePhone = this.onChangePhone.bind(this);
     this.onChangeRole = this.onChangeRole.bind(this);
 
     this.state = {
@@ -74,6 +34,9 @@ export default class Register extends Component {
       password: "",
       phone: "",
       role: "",
+      lat: "",
+      lng: "",
+      region: "",
       successful: false,
       message: ""
     };
@@ -132,7 +95,11 @@ export default class Register extends Component {
           this.state.lastName,
           this.state.email,
           this.state.password,
-          this.state.role
+          this.state.phone,
+          this.state.role,
+          this.state.region,
+          [this.state.lat, this.state.lng]
+
       ).then(
         response => {
           this.setState({
