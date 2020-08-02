@@ -72,9 +72,6 @@ const Login = () => {
 
             </Form>
           </div>
-          <div className="card">
-            <MapTest />
-          </div>
         </div>
       </div>
   );

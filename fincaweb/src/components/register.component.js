@@ -8,6 +8,7 @@ import AuthService from "../services/auth.service";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Login from "./login.component";
+import MapTest from "./MapTest";
 
 const options = [
   { value: 'regularConsumer', label: 'Cliente Regular' },
@@ -26,8 +27,8 @@ const Register = () => {
     password: "",
     phone: "",
     role: "",
-    lat: "",
-    lng: "",
+    x: "", // longitude
+    y: "", // latitude
     region: ""
   });
 
@@ -158,7 +159,7 @@ const Register = () => {
             </Form>
           </div>
           <div className="card">
-            <MapComponent />
+            <MapTest registerForm={registerForm} setForm={setForm} />
           </div>
         </div>
 
