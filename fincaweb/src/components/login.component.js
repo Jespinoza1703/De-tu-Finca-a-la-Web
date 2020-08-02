@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Form from "react-validation/build/form";
 import TextField from '@material-ui/core/TextField';
-import MapTest from "./MapTest";
 
 
 const Login = () => {

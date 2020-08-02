@@ -1,11 +1,9 @@
 import React, {useState} from "react";
 import Form from "react-validation/build/form";
-
-import {MapComponent} from '../components/Map'
-import RegionsService from "../services/regions.service";
+import "../index.css";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import MapTest from "./MapTest";
+import MapComponent from "./Map";
 
 const options = [
   { value: 'regularConsumer', label: 'Cliente Regular' },
@@ -13,24 +11,6 @@ const options = [
   { value: 'producer', label: 'Productor' },
   { value: 'transportation', label: 'Transporte' },
 ];
-
-
-let regionOptions = [];
-const getRegionsList=()=>{
-  RegionsService.getRegions().then(response =>{
-        let list = [];
-        for (let i = 0; i < response.data.length; i++ ){
-          let option = {
-            value: response.data[i].name,
-            label: response.data[i].name
-          };
-          list.push(option);
-        }
-        regionOptions = list;
-      }
-  );
-  getRegionsList();
-};
 
 
 const Register = () => {
@@ -47,15 +27,13 @@ const Register = () => {
     region: ""
   });
 
-  const {name, lastName, email, password, phone, role, x, y, region} = registerForm;
-
+  const {name, lastName, email, password, phone, role, lat, lng, region} = registerForm;
 
   const updateForm=(e)=>{
     setForm({
       ...registerForm,[e.target.name]:e.target.value
-    });
+    })
   };
-
 
   const handleRegister =(e)=> {
     e.preventDefault();
@@ -69,7 +47,7 @@ const Register = () => {
         phone,
         role,
         region,
-        [y, x]);
+        [lat, lng]);
 
      */
   };
@@ -168,26 +146,6 @@ const Register = () => {
                       </TextField>
                     </div>
 
-                <div className="form-group">
-                  <TextField
-                      name="region"
-                      required
-                      select
-                      label="Seleccione su region"
-                      value={region}
-                      onChange={updateForm}
-                      variant="outlined"
-                      size="small"
-                      helperText="Por favor seleccione su region para registrarse"
-                  >
-                    {regionOptions.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                    ))}
-                  </TextField>
-                </div>
-
                     <div className="form-group">
                       <button className="btn btn-primary btn-block">Registrarse</button>
                     </div>
@@ -196,7 +154,7 @@ const Register = () => {
             </Form>
           </div>
           <div className="card">
-            <MapTest registerForm={registerForm} setForm={setForm} />
+            <MapComponent registerForm={registerForm} setForm={setForm} />
           </div>
         </div>
 
