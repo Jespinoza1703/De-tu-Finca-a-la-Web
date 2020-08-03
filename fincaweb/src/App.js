@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'leaflet-geosearch/dist/geosearch.css';
@@ -12,126 +12,114 @@ import Home from "./components/home.component";
 
 
 
-class App extends Component {
+const App = () => {
+
+  const [appVars, setApp] = useState({
+    isLoggedIn: false,
+    currentUser: undefined
+  });
 
 
-  constructor(props) {
-    super(props);
-      this.logOut = this.logOut.bind(this);
+  const {isLoggedIn, currentUser} = appVars;
 
-    this.state = {
-      showModeratorBoard: false,
-      showAdminBoard: false,
-      currentUser: undefined
-    };
 
-  }
-
-  componentDidMount() {
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      this.setState({
-        currentUser: user,
-        showModeratorBoard: user.kind === "wholesaleConsumer",
-        showAdminBoard: user.kind === "regularConsumer"
-      });
+  const checkRegularConsumer = () =>{
+    let result = false;
+    if (isLoggedIn && currentUser.role === 'regularConsumer'){
+      result = true;
     }
-  }
+    return result;
+  };
 
-  logOut() {
+  const checkWholesaleConsumer = () =>{
+    let result = false;
+    if (isLoggedIn && currentUser.role === 'wholesaleConsumer'){
+      result = true;
+    }
+    return result;
+  };
+
+  const checkProducer = () =>{
+    let result = false;
+    if (isLoggedIn && currentUser.role === 'producer'){
+      result = true;
+    }
+    return result;
+  };
+
+
+  const logOut = () => {
     AuthService.logout();
-  }
+  };
 
+  const userNavbar= () =>{
+    if (!isLoggedIn){
+      return (
+          <Router>
+            <div>
+              <nav className="navbar navbar-expand navbar-custom">
+                <Link to={"/"} className="navbar-brand">
+                  De la Finca a tu Casa
+                </Link>
 
+                    <div className="navbar-nav ml-auto">
+                      <li className="nav-item">
+                        <Link to={"/login"} className="nav-link">
+                          Login
+                        </Link>
+                      </li>
 
-  render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+                      <li className="nav-item">
+                        <Link to={"/register"} className="nav-link">
+                          Sign Up
+                        </Link>
+                      </li>
+                    </div>
+              </nav>
 
-    return (
-        <Router>
-          <div>
-            <nav className="navbar navbar-expand navbar-custom">
-              <Link to={"/"} className="navbar-brand">
-                De la Finca a tu Casa
-              </Link>
-              <div className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <Link to={"/home"} className="nav-link">
-                    Home
-                  </Link>
-                </li>
-
-                {showModeratorBoard && (
-                    <li className="nav-item">
-                      <Link to={"/mod"} className="nav-link">
-                        Moderator Board
-                      </Link>
-                    </li>
-                )}
-
-                {showAdminBoard && (
-                    <li className="nav-item">
-                      <Link to={"/admin"} className="nav-link">
-                        Admin Board
-                      </Link>
-                    </li>
-                )}
-
-                {currentUser && (
-                    <li className="nav-item">
-                      <Link to={"/user"} className="nav-link">
-                        User
-                      </Link>
-                    </li>
-                )}
+              <div className="container mt-3">
+                <Switch>
+                  <Route exact path={["/", "/login"]}> <Login appVars={appVars} setApp={setApp}/> </Route>
+                  <Route exact path="/home"> <Home /> </Route>
+                  <Route exact path="/register"> <Register /> </Route>
+                </Switch>
               </div>
-
-              {currentUser ? (
-                  <div className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                      <Link to={"/profile"} className="nav-link">
-                        {currentUser.name}
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <a href="/login" className="nav-link" onClick={this.logOut}>
-                        LogOut
-                      </a>
-                    </li>
-                  </div>
-              ) : (
-                  <div className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                      <Link to={"/login"} className="nav-link">
-                        Login
-                      </Link>
-                    </li>
-
-                    <li className="nav-item">
-                      <Link to={"/register"} className="nav-link">
-                        Sign Up
-                      </Link>
-                    </li>
-                  </div>
-              )}
-            </nav>
-
-            <div className="container mt-3">
-              <Switch>
-                <Route exact path={["/", "/login"]}> <Login /> </Route>
-                <Route exact path="/login"> <Login /> </Route>
-                <Route exact path="/register"> <Register /> </Route>
-              </Switch>
             </div>
-          </div>
-        </Router>
+          </Router>
+      )
+    }
+    else{
+      return (
+          <Router>
+            <div>
+              <nav className="navbar navbar-expand navbar-custom">
+                <Link to={"/"} className="navbar-brand">
+                  De la Finca a tu Casa
+                </Link>
+                <div className="navbar-nav mr-auto">
+                      <li className="nav-item">
+                        <a href="/login" className="nav-link" onClick={logOut}>
+                          LogOut
+                        </a>
+                      </li>
+                    </div>
+              </nav>
+              <div className="container mt-3">
+                <Switch>
+                  <Route exact path={["/", "/login"]}> <Login appVars={appVars} setApp={setApp} /> </Route>
+                  <Route exact path="/home"> <Home /> </Route>
+                  <Route exact path="/register"> <Register /> </Route>
+                </Switch>
+              </div>
+            </div>
+          </Router>
 
+      );
+    }
+  };
 
-    );
-  }
-}
+  return userNavbar();
 
-
+};
 
 export default App;

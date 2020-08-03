@@ -10,7 +10,7 @@ const options = [
   { value: 'transportation', label: 'Transportista' }
 ];
 
-const Login = () => {
+const Login = (props) => {
 
   const [loginForm, setForm] = useState({
     email: '',
@@ -29,7 +29,6 @@ const Login = () => {
 
   const handleLogin =(e)=> {
     e.preventDefault();
-    console.log(loginForm);
     AuthService.login(email, password, role);
   };
 

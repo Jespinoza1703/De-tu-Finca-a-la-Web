@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const API_URL = "https://kz-mock-productmanager.herokuapp.com/";
 
 class AuthService {
@@ -24,8 +22,13 @@ class AuthService {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
+        .catch(error => {
+          console.error('Error:', error);
+        })
+        .then(response => {
+          console.log('Success:', response);
+          localStorage.setItem("user", JSON.stringify(response.user));
+        });
   }
 
   logout() {
