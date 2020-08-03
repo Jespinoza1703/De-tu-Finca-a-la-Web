@@ -5,8 +5,13 @@ import Catalogo from './Catalago';
 
 const Home = () => {
     const API_URL="https://kz-product-manager-2.herokuapp.com/"
-    const [productos,setProduct]=useState(false)
-
+    const [productos,setProduct]=useState(false);
+    const [stock,setStock]=useState(false);
+    const [tipoProducto,setTipoProducto]=useState("");
+    const  [carrito,agregarCarrito]=useState({
+        items:[],
+        limitDate:""
+    });
     //Metodo para hacer el get
     const fetchData = async () => {
         const token = localStorage.getItem("token");
@@ -30,6 +35,12 @@ const Home = () => {
             {!productos?null :
                 <Catalogo
                     productos={productos}
+                    stock={stock}
+                    setStock={setStock}
+                    tipoProducto={tipoProducto}
+                    seTipoProducto={setTipoProducto}
+                    agregarCarrito={agregarCarrito}
+                    carrito={carrito}
                 />
 
             }
