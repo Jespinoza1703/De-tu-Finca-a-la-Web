@@ -211,7 +211,7 @@ const Register = () => {
 
             </Form>
           </div>
-          <div className="card">
+          <div className="card-e">
             <MapComponent registerForm={registerForm} setForm={setForm}/>
           </div>
         </div>
