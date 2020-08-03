@@ -28,6 +28,7 @@ class AuthService {
         .then(response => {
           localStorage.setItem("user", JSON.stringify(response.user));
           localStorage.setItem("loggedIn", "yes");
+          localStorage.setItem("token", response.token);
           setApp({
             isLoggedIn: localStorage.getItem('loggedIn'),
             currentUser: response.user
@@ -39,6 +40,7 @@ class AuthService {
   logout(setApp) {
     localStorage.removeItem("user");
     localStorage.setItem("loggedIn", "no");
+    localStorage.removeItem("token");
     setApp({
       isLoggedIn: localStorage.getItem('loggedIn'),
       currentUser: undefined
