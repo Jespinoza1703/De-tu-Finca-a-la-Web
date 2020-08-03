@@ -17,7 +17,6 @@ const ProducerHome = () => {
                     price: response.data[i].price,
                     units: response.data[i].units,
                 };
-                console.log(option);
                 list.push(option);
             }
             setProducts({

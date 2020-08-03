@@ -19,8 +19,17 @@ class ProductsService {
             Authorization: 'Bearer ' + token
         };
 
-        const url = API_URL + 'productores/orders?state=pendingConfirm';
+        const url = API_URL + 'productores/orders';
         return axios.get(url, { headers: data});
+    }
+
+    changePackageState(packageId, newState){
+        const token = localStorage.getItem("token");
+        const data = {
+            Authorization: 'Bearer ' + token
+        };
+        const url = API_URL + 'productores/orders/' + packageId;
+        return axios.patch(url, {state: newState}, { headers: data});
     }
 }
 

@@ -18,13 +18,14 @@ const ProducerOrders = () => {
         ProductsService.getPendingOrders().then(response => {
             for (let i = 0; i < response.data.length; i++) {
                 let option = {
-                    id: response.data[i].productId,
+                    id: response.data[i]._id,
                     name: response.data[i].name,
                     totalPrice: response.data[i].totalPrice,
                     quantity: response.data[i].quantity,
                     state: response.data[i].state,
                 };
                 list.push(option);
+                console.log(response.data[i]);
             }
             setOrders({
                 orders: list
@@ -42,6 +43,7 @@ const ProducerOrders = () => {
             {!orders.orders ? null :
                     orders.orders.map((order) => (
                         <Order
+                            id={order.id}
                             key={order.id}
                             order={order}
                         />

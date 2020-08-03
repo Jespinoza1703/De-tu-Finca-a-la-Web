@@ -1,5 +1,6 @@
 import React, {Fragment, useEffect, useState} from "react";
-const Order = ({id, order}) => {
+import ProductsService from "../services/products.service";
+const Order = ({id, order, key}) => {
 
     const [state, setState] = useState({
         state: ''
@@ -24,8 +25,15 @@ const Order = ({id, order}) => {
     };
 
     useEffect(()=>{
-        getVars()
+        getVars();
     },[]);
+
+
+    const confirmOrder = () =>{
+        ProductsService.changePackageState(id, "pendingDelivery").then(r =>{
+            console.log(r);
+        })
+    };
 
 
     return (
@@ -38,14 +46,14 @@ const Order = ({id, order}) => {
                 <h5 className="card-title">Total ${order.totalPrice}</h5>
                 <h5 className="card-title">Estado: {state.state}</h5>
                 {order.state === 'pendingConfirm'? (
-                    <button className="btn btn-success">Confimar</button>
+                    <button className="btn btn-success ml-3" onClick={confirmOrder}>Confimar</button>
                 ) : (
-                    <button className="btn btn-success" disabled>Confimar</button>
+                    <button className="btn btn-success ml-3" disabled>Confimar</button>
                 )
 
                 }
                 {order.state === 'pendingDelivery'? (
-                    <button className="btn btn-success">Entregado</button>
+                    <button className="btn btn-success ml-3">Entregado</button>
                 ) : (
                     <button className="btn btn-success ml-3" disabled>Entregado</button>
                 )
