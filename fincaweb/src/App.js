@@ -9,6 +9,7 @@ import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import ProducerHome from "./components/producerHome.js";
+import ProducerOrders from "./components/producerOrders.js";
 
 
 
@@ -123,22 +124,37 @@ const App = () => {
         <Router>
           <div>
             <nav className="navbar navbar-expand navbar-custom">
-              <Redirect  to="/producerHome/" />
+              <Redirect to="/producerHome/" />
               <Link to={"/producerHome"} className="navbar-brand">
                 De la Finca a tu Casa
               </Link>
 
               <div className="navbar-nav ml-auto">
+
+                <li className="nav-item">
+                  <Link to={"/producerHome"} className="nav-link">
+                    Ver mis productos
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link to={"/producerOrders"} className="nav-link">
+                    Ver mis órdenes
+                  </Link>
+                </li>
+
                 <li className="nav-item">
                   <Link to={"/login"} className="nav-link" onClick={logOut}>
                     Salir
                   </Link>
                 </li>
+
               </div>
             </nav>
             <div className="container mt-3">
               <Switch>
                 <Route exact path={["/", "/producerHome"]}> <ProducerHome /> </Route>
+                <Route exact path="/producerOrders"> <ProducerOrders /> </Route>
                 <Route exact path="/login"> <Login appVars={appVars} setApp={setApp} /> </Route>
                 <Route exact path="/register"> <Register /> </Route>
               </Switch>
