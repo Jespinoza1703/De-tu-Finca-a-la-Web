@@ -37,19 +37,19 @@ const App = () => {
           <div>
             <nav className="navbar navbar-expand navbar-custom">
               <Link to={"/"} className="navbar-brand">
-                De la Finca a tu Casa
+                <h1>De la Finca a tu Casa</h1>
               </Link>
 
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link to={"/login"} className="nav-link">
-                    Ingresar
+                    <h1>Ingresar</h1>
                   </Link>
                 </li>
 
                 <li className="nav-item">
                   <Link to={"/register"} className="nav-link">
-                    Registrarse
+                    <h1>Registrarse</h1>
                   </Link>
                 </li>
               </div>
@@ -73,26 +73,26 @@ const App = () => {
             <nav className="navbar navbar-expand navbar-custom">
               <Redirect  to="/home/" />
               <Link to={"/home"} className="navbar-brand">
-                De la Finca a tu Casa
+                <h1>De la Finca a tu Casa</h1>
               </Link>
 
               <div className="navbar-nav ml-auto">
 
                 <li className="nav-item">
                   <Link to={"/cart"} className="nav-link">
-                    Carrito
+                    <h3>Carrito</h3>
                   </Link>
                 </li>
 
                 <li className="nav-item">
                   <Link to={"/profile"} className="nav-link">
-                    Perfil
+                    <h3>Perfil</h3>
                   </Link>
                 </li>
 
                 <li className="nav-item">
                   <Link to={"/login"} className="nav-link" onClick={logOut}>
-                    Salir
+                    <h3>Salir</h3>
                   </Link>
                 </li>
 
@@ -120,32 +120,32 @@ const App = () => {
             <nav className="navbar navbar-expand navbar-custom">
               <Redirect to="/producerHome/" />
               <Link to={"/producerHome"} className="navbar-brand">
-                De la Finca a tu Casa
+                <hi>De la Finca a tu Casa</hi>
               </Link>
 
               <div className="navbar-nav ml-auto">
 
                 <li className="nav-item">
                   <Link to={"/producerHome"} className="nav-link">
-                    Mis Productos
+                    <h3>Mis Productos</h3>
                   </Link>
                 </li>
 
                 <li className="nav-item">
                   <Link to={"/producerOrders"} className="nav-link">
-                    Mis órdenes
+                    <h3>Mis ordenes</h3>
                   </Link>
                 </li>
 
                 <li className="nav-item">
                   <Link to={"/profile"} className="nav-link">
-                    Perfil
+                    <h3>Perfil</h3>
                   </Link>
                 </li>
 
                 <li className="nav-item">
                   <Link to={"/login"} className="nav-link" onClick={logOut}>
-                    Salir
+                    <h3>Salir</h3>
                   </Link>
                 </li>
 
