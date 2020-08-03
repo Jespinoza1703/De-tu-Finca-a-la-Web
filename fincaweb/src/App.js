@@ -33,8 +33,8 @@ class App extends Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN")
+        showModeratorBoard: user.kind === "wholesaleConsumer",
+        showAdminBoard: user.kind === "regularConsumer"
       });
     }
   }
@@ -119,7 +119,7 @@ class App extends Component {
 
             <div className="container mt-3">
               <Switch>
-                <Route exact path={["/", "/home"]}> <Home /> </Route>
+                <Route exact path={["/", "/login"]}> <Login /> </Route>
                 <Route exact path="/login"> <Login /> </Route>
                 <Route exact path="/register"> <Register /> </Route>
               </Switch>

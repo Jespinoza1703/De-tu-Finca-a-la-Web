@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import MapComponent from "./Map";
 import RegionsService from "../services/regions.service";
+import AuthService from "../services/auth.service";
 
 const options = [
   { value: 'regularConsumer', label: 'Cliente Regular' },
@@ -14,66 +15,69 @@ const options = [
 ];
 
 
-let regionOptions = [];
-
-const getRegionsList=()=>{
-  RegionsService.getRegions().then(response =>{
-        let list = [];
-        for (let i = 0; i < response.data.length; i++ ){
-          let option = {
-            value: response.data[i].name,
-            label: response.data[i].name
-          };
-          list.push(option);
-        }
-        regionOptions = list;
-      }
-  );
-};
 
 const Register = () => {
+
+
+  const [regionOptions, setRegionOptions] = useState({
+    options: [],
+  });
+
+  const getRegionsList = () => {
+    let list = [];
+    RegionsService.getRegions().then(response => {
+          for (let i = 0; i < response.data.length; i++) {
+            let option = {
+              value: response.data[i].name,
+              label: response.data[i].name
+            };
+            list.push(option);
+          }
+          setRegionOptions({
+            options: list
+          });
+        }
+    );
+  };
+
 
   const [registerForm, setForm] = useState({
     name: "",
     lastName: "",
     email: "",
     password: "",
-    phone: "",
+    telephone: "",
     role: "",
     x: "", // longitude
     y: "", // latitude
     region: ""
   });
 
-  const {name, lastName, email, password, phone, role, x, y, region} = registerForm;
+  const {name, lastName, email, password, telephone, role, x, y, region} = registerForm;
 
-  const updateForm=(e)=>{
+  const updateForm = (e) => {
     setForm({
-      ...registerForm,[e.target.name]:e.target.value
-    })
-    getRegionsList();
+      ...registerForm, [e.target.name]: e.target.value
+    });
   };
 
-  const handleRegister =(e)=> {
+  const handleRegister = (e) => {
     e.preventDefault();
-    /*
     AuthService.register(
         name,
         lastName,
         email,
         password,
-        phone,
+        telephone,
         role,
         region,
-        [y, x]);
-
-     */
+        x,
+        y);
   };
 
   const nameError = name.length < 3;
   const lastNameError = lastName.length < 3;
-  const passwordError = password.length < 6;
-  const phoneError = !isNaN(Number(phone));
+  const passwordError = password.length < 7;
   const emailError = !email.includes('@');
 
   return (
@@ -114,71 +118,69 @@ const Register = () => {
                       onChange={updateForm}
                       variant="outlined"
                       value={lastName}/>
-                    </div>
+                </div>
 
-                    <div className="form-group">
-                      <TextField
-                          helperText={emailError ? "Debe contener @" : ""}
-                          error={emailError}
-                          type="email"
-                          required
-                          name="email"
-                          label="Email"
-                          size="small"
-                          className="form-control"
-                          onChange={updateForm}
-                          variant="outlined"
-                          value={email}/>
-                    </div>
+                <div className="form-group">
+                  <TextField
+                      helperText={emailError ? "Debe contener @" : ""}
+                      error={emailError}
+                      type="email"
+                      required
+                      name="email"
+                      label="Email"
+                      size="small"
+                      className="form-control"
+                      onChange={updateForm}
+                      variant="outlined"
+                      value={email}/>
+                </div>
 
-                    <div className="form-group">
-                      <TextField
-                          helperText={passwordError ? "Debe tener al menos 6 caracteres" : ""}
-                          error={passwordError}
-                          type="password"
-                          required
-                          name="password"
-                          label="Contraseña"
-                          size="small"
-                          className="form-control"
-                          onChange={updateForm}
-                          variant="outlined"
-                          value={password}/>
-                    </div>
-                    <div className="form-group">
-                      <TextField
-                          helperText={phoneError ? "Debe ser un número" : ""}
-                          error={phoneError}
-                          type="text"
-                          required
-                          name="phone"
-                          label="Teléfono"
-                          size="small"
-                          className="form-control"
-                          onChange={updateForm}
-                          variant="outlined"
-                          value={phone}/>
-                    </div>
-                    <div className="form-group">
-                      <TextField
-                          name="role"
-                          required
-                          select
-                          label="Seleccione su rol"
-                          value={role}
-                          onChange={updateForm}
-                          variant="outlined"
-                          size="small"
-                          fullWidth={true}
+                <div className="form-group">
+                  <TextField
+                      helperText={passwordError ? "Debe tener al menos 7 caracteres" : ""}
+                      error={passwordError}
+                      type="password"
+                      required
+                      name="password"
+                      label="Contraseña"
+                      size="small"
+                      className="form-control"
+                      onChange={updateForm}
+                      variant="outlined"
+                      value={password}/>
+                </div>
+                <div className="form-group">
+                  <TextField
+                      type="text"
+                      required
+                      name="telephone"
+                      label="Teléfono"
+                      size="small"
+                      className="form-control"
+                      onChange={updateForm}
+                      variant="outlined"
+                      value={telephone}/>
+                </div>
+                <div className="form-group">
+                  <TextField
+                      name="role"
+                      required
+                      select
+                      label="Seleccione su rol"
+                      value={role}
+                      onChange={updateForm}
+                      variant="outlined"
+                      size="small"
+                      fullWidth={true}
 
-                      >
-                        {options.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                              {option.label}
-                            </MenuItem>
-                        ))}
-                      </TextField>
-                    </div>
+                  >
+                    {options.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                    ))}
+                  </TextField>
+                </div>
 
                 <div className="form-group">
                   <TextField
@@ -191,8 +193,9 @@ const Register = () => {
                       variant="outlined"
                       size="small"
                       fullWidth={true}
+                      onClick={getRegionsList}
                   >
-                    {regionOptions.map((option) => (
+                    {regionOptions.options.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
                           {option.label}
                         </MenuItem>
@@ -201,14 +204,14 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                      <button className="btn btn-primary btn-block">Registrarse</button>
-                    </div>
-                  </div>
+                  <button className="btn btn-primary btn-block">Registrarse</button>
+                </div>
+              </div>
 
             </Form>
           </div>
           <div className="card">
-            <MapComponent registerForm={registerForm} setForm={setForm} />
+            <MapComponent registerForm={registerForm} setForm={setForm}/>
           </div>
         </div>
 
@@ -217,6 +220,6 @@ const Register = () => {
   );
 
 
-  };
+};
 
 export default Register;

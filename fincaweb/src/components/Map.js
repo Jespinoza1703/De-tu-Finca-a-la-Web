@@ -29,7 +29,7 @@ const Search = (props) => {
                 lastName: props.registerForm.lastName,
                 email: props.registerForm.email,
                 password: props.registerForm.password,
-                phone: props.registerForm.phone,
+                telephone: props.registerForm.telephone,
                 role: props.registerForm.role,
                 x: e.location.x, // longitude
                 y: e.location.y, // latitude
@@ -48,7 +48,7 @@ const Search = (props) => {
                     lastName: props.registerForm.lastName,
                     email: props.registerForm.email,
                     password: props.registerForm.password,
-                    phone: props.registerForm.phone,
+                    telephone: props.registerForm.telephone,
                     role: props.registerForm.role,
                     x: marker.getLatLng().lng, // longitude
                     y: marker.getLatLng().lat, // latitude

@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import Form from "react-validation/build/form";
 import TextField from '@material-ui/core/TextField';
-import {Transformation} from "leaflet";
+import AuthService from "../services/auth.service";
+import MenuItem from "@material-ui/core/MenuItem";
 
+const options = [
+  { value: 'consumer', label: 'Cliente' },
+  { value: 'producer', label: 'Productor' },
+  { value: 'transportation', label: 'Transportista' }
+];
 
 const Login = () => {
 
   const [loginForm, setForm] = useState({
     email: '',
-    password: ''
+    password: '',
+    role: ''
   });
 
-  const {email, password} = loginForm;
+  const {email, password, role} = loginForm;
 
   const updateForm=(e)=>{
     setForm({
@@ -23,7 +30,7 @@ const Login = () => {
   const handleLogin =(e)=> {
     e.preventDefault();
     console.log(loginForm);
-    // console.log(AuthService.login(email, password));
+    AuthService.login(email, password, role);
   };
 
   return (
@@ -62,7 +69,25 @@ const Login = () => {
                     value={password}
                 />
               </div>
-
+              <div className="form-group">
+                <TextField
+                    name="role"
+                    required
+                    select
+                    label="Seleccione su rol"
+                    value={role}
+                    onChange={updateForm}
+                    variant="outlined"
+                    size="small"
+                    fullWidth={true}
+                >
+                  {options.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                  ))}
+                </TextField>
+              </div>
               <div className="form-group">
                 <button
                     className="btn btn-primary btn-block"
