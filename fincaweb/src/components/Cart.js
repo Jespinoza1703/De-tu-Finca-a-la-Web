@@ -96,7 +96,6 @@ const Cart = ({carrito}) => {
         <div className="row">
           <div className="col-lg">
               <h1 className="titulo">Revisa tu    <span className="subrayado">compra</span></h1>
-              <p className="parrafito">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
           </div>
            

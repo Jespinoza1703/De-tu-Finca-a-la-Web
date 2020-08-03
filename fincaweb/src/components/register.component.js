@@ -10,8 +10,7 @@ import AuthService from "../services/auth.service";
 const options = [
   { value: 'regularConsumer', label: 'Cliente Regular' },
   { value: 'wholesaleConsumer', label: 'Cliente al por mayor' },
-  { value: 'producer', label: 'Productor' },
-  { value: 'transportation', label: 'Transporte' },
+  { value: 'producer', label: 'Productor' }
 ];
 
 
