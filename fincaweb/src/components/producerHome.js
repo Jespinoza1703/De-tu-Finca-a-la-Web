@@ -1,11 +1,11 @@
 import React from "react";
 import ProductsService from "../services/products.service";
 
-const Home = () => {
+const ProducerHome = () => {
 
     const getCurrentProducerProducts = () => {
         ProductsService.getCurrentProducerProducts().then(response => {
-            console.log(response);
+                console.log(response);
             }
         );
     };
@@ -19,10 +19,10 @@ const Home = () => {
 
     return (
         <div>
-            <button onClick={getPendingOrders}>ConsumidorRegular!</button>
+            <button onClick={getPendingOrders}>Productor!</button>
         </div>
     )
 };
 
 
-export default Home;
+export default ProducerHome;

@@ -26,13 +26,18 @@ class AuthService {
           console.error('Error:', error);
         })
         .then(response => {
-          localStorage.setItem("user", JSON.stringify(response.user));
+          if(response.user){
+            localStorage.setItem("user", JSON.stringify(response.user));
+          }
+          if(response.productor){
+            localStorage.setItem("user", JSON.stringify(response.productor));
+          }
           localStorage.setItem("loggedIn", "yes");
           localStorage.setItem("token", response.token);
           setApp({
             isLoggedIn: localStorage.getItem('loggedIn'),
-            currentUser: response.user
-          })
+            currentUser: localStorage.getItem('user'),
+          });
           console.log('Success:', response);
         });
   }
