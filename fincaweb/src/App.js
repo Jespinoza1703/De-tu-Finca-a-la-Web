@@ -133,13 +133,13 @@ const App = () => {
 
                 <li className="nav-item">
                   <Link to={"/producerHome"} className="nav-link">
-                    Ver mis productos
+                    Mis Productos
                   </Link>
                 </li>
 
                 <li className="nav-item">
                   <Link to={"/producerOrders"} className="nav-link">
-                    Ver mis órdenes
+                    Mis órdenes
                   </Link>
                 </li>
 
