@@ -1,7 +1,7 @@
-const API_URL = "https://kz-mock-productmanager.herokuapp.com/";
+const API_URL = "https://kz-product-manager-2.herokuapp.com/";
 
 class AuthService {
-  login(email, password, role) {
+  login(email, password, role, setApp) {
     let type = '';
     if(role === 'consumer'){
       type = 'users/'
@@ -26,13 +26,23 @@ class AuthService {
           console.error('Error:', error);
         })
         .then(response => {
-          console.log('Success:', response);
           localStorage.setItem("user", JSON.stringify(response.user));
+          localStorage.setItem("loggedIn", "yes");
+          setApp({
+            isLoggedIn: localStorage.getItem('loggedIn'),
+            currentUser: response.user
+          })
+          console.log('Success:', response);
         });
   }
 
-  logout() {
+  logout(setApp) {
     localStorage.removeItem("user");
+    localStorage.setItem("loggedIn", "no");
+    setApp({
+      isLoggedIn: localStorage.getItem('loggedIn'),
+      currentUser: undefined
+    })
   }
 
   register(name, lastName, email, password, telephone, role, region, x, y) {

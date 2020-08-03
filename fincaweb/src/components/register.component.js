@@ -31,6 +31,7 @@ const Register = () => {
               value: response.data[i].name,
               label: response.data[i].name
             };
+            console.log(response);
             list.push(option);
           }
           setRegionOptions({

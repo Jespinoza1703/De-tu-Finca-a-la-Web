@@ -29,7 +29,7 @@ const Login = (props) => {
 
   const handleLogin =(e)=> {
     e.preventDefault();
-    AuthService.login(email, password, role);
+    AuthService.login(email, password, role, props.setApp);
   };
 
   return (
