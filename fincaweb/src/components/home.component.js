@@ -3,15 +3,12 @@ import axios from "axios";
 import Banner from './Banner';
 import Catalogo from './Catalago';
 
-const Home = () => {
+const Home = ({carrito,agregarCarrito}) => {
     const API_URL="https://kz-product-manager-2.herokuapp.com/"
     const [productos,setProduct]=useState(false);
     const [stock,setStock]=useState(false);
     const [tipoProducto,setTipoProducto]=useState("");
-    const  [carrito,agregarCarrito]=useState({
-        items:[],
-        limitDate:""
-    });
+   
     //Metodo para hacer el get
     const fetchData = async () => {
         const token = localStorage.getItem("token");

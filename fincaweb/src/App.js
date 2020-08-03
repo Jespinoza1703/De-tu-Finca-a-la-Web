@@ -20,6 +20,10 @@ const App = () => {
     isLoggedIn: localStorage.getItem('loggedIn'),
     currentUser: localStorage.getItem('user'),
   });
+  const  [carrito,agregarCarrito]=useState({
+    items:[],
+    limitDate:"2002-12-09"
+});
 
 
   const {isLoggedIn, currentUser} = appVars;
@@ -116,10 +120,10 @@ const App = () => {
             </nav>
             <div className="container mt-3">
               <Switch>
-                <Route exact path={["/", "/home"]}> <Home /> </Route>
+                <Route exact path={["/", "/home"]}> <Home carrito={carrito} agregarCarrito={agregarCarrito}  /> </Route>
                 <Route exact path="/login"> <Login appVars={appVars} setApp={setApp} /> </Route>
                 <Route exact path="/register"> <Register /> </Route>
-                <Route exact path="/cart"> <Cart /> </Route>
+                <Route exact path="/cart"> <Cart carrito={carrito} agregarCarrito={agregarCarrito} /> </Route>
               </Switch>
             </div>
           </div>
