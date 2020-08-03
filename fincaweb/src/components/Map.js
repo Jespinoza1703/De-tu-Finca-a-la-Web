@@ -70,7 +70,7 @@ const Search = (props) => {
 
 const styles = {
     wrapper: {
-        height: '80vw',
+        height: '35vw',
         width: '100%',
         margin: '0 auto',
         display: 'flex'

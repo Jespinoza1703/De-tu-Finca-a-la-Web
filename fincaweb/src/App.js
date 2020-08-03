@@ -10,6 +10,7 @@ import Register from "./components/register.component";
 import Home from "./components/home.component";
 import ProducerHome from "./components/producerHome.js";
 import ProducerOrders from "./components/producerOrders.js";
+import Cart from "./components/Cart";
 
 
 
@@ -99,6 +100,13 @@ const App = () => {
               </Link>
 
               <div className="navbar-nav ml-auto">
+
+                <li className="nav-item">
+                  <Link to={"/cart"} className="nav-link">
+                    Carrito
+                  </Link>
+                </li>
+
                 <li className="nav-item">
                   <Link to={"/login"} className="nav-link" onClick={logOut}>
                     Salir
@@ -111,6 +119,7 @@ const App = () => {
                 <Route exact path={["/", "/home"]}> <Home /> </Route>
                 <Route exact path="/login"> <Login appVars={appVars} setApp={setApp} /> </Route>
                 <Route exact path="/register"> <Register /> </Route>
+                <Route exact path="/cart"> <Cart /> </Route>
               </Switch>
             </div>
           </div>
