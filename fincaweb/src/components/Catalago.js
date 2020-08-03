@@ -1,7 +1,28 @@
-import React, { Fragment } from "react";
+import React, { Fragment,useState,useEffect } from "react";
 import Producto from "./Producto";
-const Catalago = ({ productos }) => {
+import Stock from "./Stock";
+import axios from "axios";
+const Catalago = ({ productos,stock,setStock,tipoProducto,seTipoProducto,agregarCarrito }) => {
+    const API_URL="https://kz-product-manager-2.herokuapp.com/products?producto="
+    const [productosEspecificos,setProductosEspecificos]=useState([])
+    const fetchData = async () => {
+        const token = localStorage.getItem("token");
+        const data = {
+            Authorization: 'Bearer ' + token
+        };
+        const response = await axios.get(API_URL+tipoProducto,{ headers: data} );
 
+        setProductosEspecificos(response.data)
+        console.log(productos)
+    }
+    
+        useEffect(()=>{
+            fetchData()
+        },[stock]);
+
+     const regresar=()=>{
+         setStock(false);
+     }
     const tipoImagen=nombre=>{
         let image="";
         switch (nombre) {
@@ -30,22 +51,52 @@ const Catalago = ({ productos }) => {
 
     return (
         <Fragment>
-            <div className="container mt-5">
-                <h1 className="titulo text-left">
-                    {" "}
-                    Productos de tu <span className="subrayado">Zona</span>
-                </h1>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-                    {productos.map((producto) => (
-                        <Producto
-                            key={producto._id}
-                            /*               image={"https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"}
-                             */              image={tipoImagen(producto.name)}
-                            producto={producto}
-                        />
-                    ))}
-                </div>
+            {!stock?
+             <div className="container mt-5">
+             <h1 className="titulo text-left">
+                 {" "}
+                 Productos de tu <span className="subrayado">Zona</span>
+             </h1>
+             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                 {productos.map((producto) => (
+                     <Producto
+                         key={producto._id}
+                         /*               image={"https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"}
+                          */              image={tipoImagen(producto.name)}
+                         producto={producto}
+                         
+                         seTipoProducto={seTipoProducto}
+                         setStock={setStock}
+                     />
+                 ))}
+             </div>
+         </div>
+            
+            :<div className="container mt-5">
+            <h1 className="titulo text-left">
+                
+                 {tipoProducto} <span className="subrayado">Zona</span>
+            </h1>
+            <button type="button" class="btn btn-secondary" onClick={regresar}>
+            Regresar
+          </button>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                {productosEspecificos.map((producto) => (
+                    <Stock
+                        key={producto._id}
+                        /*               image={"https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"}
+                         */              image={tipoImagen(tipoProducto)}
+                        producto={producto}
+                        tipoProducto={tipoProducto}
+                        agregarCarrito={agregarCarrito}
+                    />
+                ))}
+                
             </div>
+            
+        </div>}
+
+           
         </Fragment>
     );
 };
