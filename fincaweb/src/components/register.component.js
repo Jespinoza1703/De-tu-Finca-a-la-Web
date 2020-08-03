@@ -84,7 +84,7 @@ const Register = () => {
   return (
       <div className="jumbotron-fluid">
         <div className="card-container flexbox-container">
-          <div className="card">
+          <div className="card-e">
 
             <h1>Registrarse</h1>
             <Form

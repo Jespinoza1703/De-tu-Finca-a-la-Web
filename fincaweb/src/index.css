@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: scroll;
-  height: 100vh;
+  height: 100vmax;
 }
 
 code {
@@ -21,7 +21,7 @@ h1{
 
 .mainContainer{
   position: relative;
-  height: 100%;
+  height: 100vmax;
   align-content: center;
 }
 
@@ -29,6 +29,7 @@ h1{
   align-content: center !important;
   width: 100%;
   height: 100%;
+  background-color:white;
 }
 
 .bg-image{
@@ -97,7 +98,7 @@ label {
   padding: 30px 20px;
 }
 
-.card {
+.card-e {
   align-content: center;
   width: 100%;
   height: 100%;
@@ -131,3 +132,153 @@ label {
 TextField{
   border-color: #15ff92;
 }
+
+/* Sahid CSS */
+card{
+  position: relative; 
+  width: 18rem;
+}
+.card-body{
+  background-color: #edf2f7;
+  
+}
+
+.cabeza {
+  position: relative;
+  /* width: 50%; */
+}
+
+.image {
+  opacity: 1;
+  display: block;
+ /*  width: 100%; */
+  
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.cabeza:hover .image {
+  opacity: 0.3;
+}
+
+.cabeza:hover .middle {
+  opacity: 1;
+}
+.imagen-banner{
+  max-width: 100%;
+    height: auto;
+    border-radius: 2.5rem;
+  
+}
+
+.parrafito {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(113, 128, 150);
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ .banner_contenedor {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+} 
+
+
+.subrayado {
+  background-color:#15ff92;
+  color: rgb(247, 250, 252);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  --transform-translate-x: 0;
+  --transform-translate-y: 0;
+  --transform-rotate: 0;
+  --transform-skew-x: -12deg;
+  --transform-skew-y: 0;
+  --transform-scale-x: 1;
+  --transform-scale-y: 1;
+  transform: translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y));
+  display: inline-block;
+}
+
+.titulo {
+  text-align: center;
+  font-weight: 900;
+  font-size: 3rem;
+  line-height: 1.375;
+  max-width: 48rem;
+}
+
+/* .text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+ */
+
+.btn:hover{
+  border-color: #18af69;
+  background-color: #18af69;
+}
+.btn:focus{
+  border-color: #18af69;
+  background-color: #18af69;
+}
+.btn{
+  border-color: #15ff92;
+  background-color: #15ff92;
+}
+
+.catalogo {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.producto{
+  line-height: 1.5;
+  font-family: Inter, system-ui;
+  color: rgb(36, 62, 99);
+  box-sizing: border-box;
+  border: 0 solid #e2e8f0;
+  margin-top: 2.5rem;
+  width: 25%;
+  padding-right: 3rem;
+  
+}
+@media (min-width: 768px){
+
+.producto {
+    width: 33.3333%;
+    padding-right: 1.5rem;
+}}
+@media (min-width: 640px){
+
+.producto {
+    width: 50%;
+    padding-right: 2.5rem;
+}}
+.container-fluid {
+  border: none;
+  padding: 1.5rem;
+}
+
