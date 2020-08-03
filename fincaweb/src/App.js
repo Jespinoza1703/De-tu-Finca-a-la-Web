@@ -95,11 +95,14 @@ const App = () => {
                 <Link to={"/home"} className="navbar-brand">
                   De la Finca a tu Casa
                 </Link>
-                <div className="navbar-nav mr-auto">
-                  <Link to={"/login"} className="nav-link" onClick={logOut}>
-                    Log Out
-                  </Link>
-                    </div>
+
+                <div className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link to={"/login"} className="nav-link" onClick={logOut}>
+                      Log out
+                    </Link>
+                  </li>
+                </div>
               </nav>
               <div className="container mt-3">
                 <Switch>
