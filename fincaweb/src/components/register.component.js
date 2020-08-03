@@ -84,7 +84,7 @@ const Register = () => {
   return (
       <div className="jumbotron-fluid bg-image">
         <div className="card-container flexbox-container">
-          <div className="card-login">
+          <div className="card-e">
 
             <h1>Registrarse</h1>
             <Form
@@ -211,7 +211,8 @@ const Register = () => {
 
             </Form>
           </div>
-          <div className="card-login">
+          <div className="card-e">
+          <div className="card-e">
             <MapComponent registerForm={registerForm} setForm={setForm}/>
           </div>
         </div>

@@ -1,26 +1,17 @@
-import React from "react";
-import ProductsService from "../services/products.service";
+import React ,{Fragment} from "react";
+
+import Banner from './Banner';
+import Catalogo from './Catalago';
 
 const Home = () => {
 
-    const getCurrentProducerProducts = () => {
-        ProductsService.getCurrentProducerProducts().then(response => {
-            console.log(response);
-            }
-        );
-    };
-
-    const getPendingOrders = () => {
-        ProductsService.getPendingOrders().then(response => {
-                console.log(response);
-            }
-        );
-    };
-
     return (
-        <div>
-            <button onClick={getPendingOrders}>ConsumidorRegular!</button>
-        </div>
+        <Fragment>
+      <Banner/>
+      
+      <Catalogo/>
+      
+    </Fragment>
     )
 };
 
