@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ProductsService from "../services/products.service";
+import ProducerProduct from "./ProducerProduct";
 
 const ProducerHome = () => {
 
@@ -25,10 +26,21 @@ const ProducerHome = () => {
         })
     };
 
+    useEffect(()=>{
+        getCurrentProducerProducts()
+    },[]);
+
 
     return (
-        <div>
-            <button onClick={getCurrentProducerProducts}>Productor!</button>
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            {!products.products ? null :
+                products.products.map((product) => (
+                    <ProducerProduct
+                        key={product.id}
+                        product={product}
+                    />
+                ))
+            }
         </div>
     )
 };

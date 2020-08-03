@@ -13,6 +13,7 @@
     "react": "^16.13.1",
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^16.13.1",
+    "react-flip-move": "^3.0.4",
     "react-leaflet": "^2.7.0",
     "react-leaflet-search": "^1.0.3",
     "react-responsive-ui": "^0.14.192",

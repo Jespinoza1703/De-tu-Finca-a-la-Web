@@ -25,30 +25,6 @@ const App = () => {
   const {isLoggedIn, currentUser} = appVars;
 
 
-  const checkRegularConsumer = () =>{
-    let result = false;
-    if (isLoggedIn && currentUser.role === 'regularConsumer'){
-      result = true;
-    }
-    return result;
-  };
-
-  const checkWholesaleConsumer = () =>{
-    let result = false;
-    if (isLoggedIn && currentUser.role === 'wholesaleConsumer'){
-      result = true;
-    }
-    return result;
-  };
-
-  const checkProducer = () =>{
-    let result = false;
-    if (isLoggedIn && currentUser.role === 'producer'){
-      result = true;
-    }
-    return result;
-  };
-
 
   const logOut = () => {
     AuthService.logout(setApp);

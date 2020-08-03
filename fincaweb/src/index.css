@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   background-image: url("https://www.customwallpaper.net.au/wp-content/uploads/2016/06/Dark-wood-planks-600x396.jpeg");
   height: 100vmax;
 }

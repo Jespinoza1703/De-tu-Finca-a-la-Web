@@ -1,37 +1,54 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ProductsService from "../services/products.service";
+import FlipMove from "react-flip-move";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import Card from "@material-ui/core/Card";
+import Producto from "./Producto";
+import Order from "./Order";
 
 const ProducerOrders = () => {
 
     const [orders, setOrders] = useState({
-        products: [],
+        orders: [],
     });
-
 
     const getPendingOrders = () => {
         let list = [];
         ProductsService.getPendingOrders().then(response => {
             for (let i = 0; i < response.data.length; i++) {
                 let option = {
-                    product: response.data[i].name,
+                    id: response.data[i].productId,
+                    name: response.data[i].name,
                     totalPrice: response.data[i].totalPrice,
                     quantity: response.data[i].quantity,
                     state: response.data[i].state,
                 };
                 list.push(option);
-                console.log(option);
             }
             setOrders({
-                products: list
+                orders: list
             });
         });
     };
 
+    useEffect(()=>{
+        getPendingOrders()
+    },[]);
+
+
     return (
-        <div>
-            <button onClick={getPendingOrders}>Ordenes</button>
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            {!orders.orders ? null :
+                    orders.orders.map((order) => (
+                        <Order
+                            key={order.id}
+                            order={order}
+                        />
+                    ))
+            }
         </div>
-    )
+    );
 };
 
 

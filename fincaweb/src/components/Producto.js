@@ -1,5 +1,5 @@
 import React,{Fragment} from "react";
-const Producto = ({image,producto,key}) => {
+const Producto = ({image, producto, key}) => {
   return (
       <div className="card container-fluid">
         <div className="cabeza">
