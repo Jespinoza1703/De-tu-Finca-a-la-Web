@@ -10,10 +10,11 @@ const Producto = ({ image, producto, key,tipoProducto,agregarCarrito,productos,c
     //console.log(producto.stock)
     //console.log(correcto[0].price)
   let item={
-    _id:producto._id,
+    _id:correcto[0]._id,
     price:correcto[0].price,
-    productId:correcto[0]._id,
+    productId:correcto[0].productId,
     name:tipoProducto,
+    units:correcto[0].units
   }
   let elemento={
     stock:item,
@@ -26,7 +27,7 @@ const Producto = ({ image, producto, key,tipoProducto,agregarCarrito,productos,c
   agregarCarrito(
     {
       items:[...carrito.items,elemento],
-      limitDate:"Hoy"
+      limitDate:"2002-12-09"
     }
   )
 
