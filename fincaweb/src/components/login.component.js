@@ -35,7 +35,7 @@ const Login = (props) => {
   return (
       <div className="jumbotron-fluid">
         <div className="card-container flexbox-container">
-          <div className="card">
+          <div className="card-login">
 
             <h1>Ingresar</h1>
             <Form

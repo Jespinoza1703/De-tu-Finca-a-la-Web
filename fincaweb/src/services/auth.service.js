@@ -48,12 +48,19 @@ class AuthService {
   }
 
   register(name, lastName, email, password, telephone, role, region, x, y) {
-    var url = API_URL + 'users';
+    let type = '';
+    if(role === 'regularConsumer'){
+      type = 'users'
+    }
+    if(role === 'producer'){
+      type = 'productores'
+    }
+    var url = API_URL + type ;
     var data = {
       name: name,
       lastname: lastName,
       email: email,
-      telephone: telephone,
+      phone: telephone,
       password: password,
       region: region,
       role: role,

@@ -19,6 +19,8 @@ class UserService {
     getTransportation() {
         return axios.get(API_URL + 'admin', { headers: authHeader() });
     }
+
+
 }
 
 export default new UserService();

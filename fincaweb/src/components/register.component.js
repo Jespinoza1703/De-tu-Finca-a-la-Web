@@ -82,9 +82,9 @@ const Register = () => {
   const emailError = !email.includes('@');
 
   return (
-      <div className="jumbotron-fluid">
+      <div className="jumbotron-fluid bg-image">
         <div className="card-container flexbox-container">
-          <div className="card">
+          <div className="card-login">
 
             <h1>Registrarse</h1>
             <Form
@@ -211,7 +211,7 @@ const Register = () => {
 
             </Form>
           </div>
-          <div className="card">
+          <div className="card-login">
             <MapComponent registerForm={registerForm} setForm={setForm}/>
           </div>
         </div>

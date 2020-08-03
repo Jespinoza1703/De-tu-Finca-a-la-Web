@@ -6,6 +6,8 @@ class RegionsService {
     getRegions() {
         return axios.get(API_URL + "region");
     }
+
+
 }
 
 export default new RegionsService();
