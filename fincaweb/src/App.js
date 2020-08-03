@@ -11,6 +11,7 @@ import Home from "./components/home.component";
 import ProducerHome from "./components/producerHome.js";
 import ProducerOrders from "./components/producerOrders.js";
 import Cart from "./components/Cart";
+import Profile from "./components/Profile";
 
 
 
@@ -84,10 +85,17 @@ const App = () => {
                 </li>
 
                 <li className="nav-item">
+                  <Link to={"/profile"} className="nav-link">
+                    Perfil
+                  </Link>
+                </li>
+
+                <li className="nav-item">
                   <Link to={"/login"} className="nav-link" onClick={logOut}>
                     Salir
                   </Link>
                 </li>
+
               </div>
             </nav>
             <div className="container mt-3">
@@ -96,6 +104,7 @@ const App = () => {
                 <Route exact path="/login"> <Login appVars={appVars} setApp={setApp} /> </Route>
                 <Route exact path="/register"> <Register /> </Route>
                 <Route exact path="/cart"> <Cart /> </Route>
+                <Route exact path="/profile"> <Profile /> </Route>
               </Switch>
             </div>
           </div>
@@ -129,6 +138,12 @@ const App = () => {
                 </li>
 
                 <li className="nav-item">
+                  <Link to={"/profile"} className="nav-link">
+                    Perfil
+                  </Link>
+                </li>
+
+                <li className="nav-item">
                   <Link to={"/login"} className="nav-link" onClick={logOut}>
                     Salir
                   </Link>
@@ -142,6 +157,7 @@ const App = () => {
                 <Route exact path="/producerOrders"> <ProducerOrders /> </Route>
                 <Route exact path="/login"> <Login appVars={appVars} setApp={setApp} /> </Route>
                 <Route exact path="/register"> <Register /> </Route>
+                <Route exact path="/profile"> <Profile /> </Route>
               </Switch>
             </div>
           </div>
