@@ -2,7 +2,7 @@ import React, { Fragment,useState,useEffect } from "react";
 import Producto from "./Producto";
 import Stock from "./Stock";
 import axios from "axios";
-const Catalago = ({ productos,stock,setStock,tipoProducto,seTipoProducto,agregarCarrito }) => {
+const Catalago = ({ productos,stock,setStock,tipoProducto,seTipoProducto,agregarCarrito,carrito }) => {
     const API_URL="https://kz-product-manager-2.herokuapp.com/products?producto="
     const [productosEspecificos,setProductosEspecificos]=useState([])
     const fetchData = async () => {
@@ -89,6 +89,8 @@ const Catalago = ({ productos,stock,setStock,tipoProducto,seTipoProducto,agregar
                         producto={producto}
                         tipoProducto={tipoProducto}
                         agregarCarrito={agregarCarrito}
+                        productos={productosEspecificos}
+                        carrito={carrito}
                     />
                 ))}
                 

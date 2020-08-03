@@ -8,7 +8,10 @@ const Home = () => {
     const [productos,setProduct]=useState(false);
     const [stock,setStock]=useState(false);
     const [tipoProducto,setTipoProducto]=useState("");
-    const  [carrito,agregarCarrito]=useState([]);
+    const  [carrito,agregarCarrito]=useState({
+        items:[],
+        limitDate:""
+    });
     //Metodo para hacer el get
     const fetchData = async () => {
         const token = localStorage.getItem("token");
@@ -37,6 +40,7 @@ const Home = () => {
                     tipoProducto={tipoProducto}
                     seTipoProducto={setTipoProducto}
                     agregarCarrito={agregarCarrito}
+                    carrito={carrito}
                 />
 
             }
